@@ -33,15 +33,12 @@
 
 void main(void)
 {
-	
+
     SysCtlClockSet(SYSCTL_SYSDIV_2_5 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ |
                        SYSCTL_OSC_MAIN);
     ConfigureWatchdog();
     FlashProtectSet(0x8000,FlashReadWrite);
     FlashProtectSave();
-    //();
-
-    //dummy();
     pyld_status=0;
     mode_change=3;
     PYLD_SPEED_STANDBY_INIT();
