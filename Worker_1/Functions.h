@@ -80,6 +80,7 @@ uint8_t ui8ControlTable[1024] __attribute__ ((aligned(1024)));
 #define WT_CT_AD         0xC800
 #define SP_MD_ST_AD      0xD200
 #define SP_MD_ED_AD      0xD600
+#define Fail_Safe_TM     0xE000
 
 
 
@@ -132,7 +133,12 @@ void REDLED_Blink(void);
 
 void Fail_Safe_Timer(void)
 {
-
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1);
+    TimerConfigure(TIMER1_BASE, TIMER_CFG_PERIODIC);
+    TimerLoadSet(TIMER1_BASE, TIMER_B, SysCtlClockGet()*30);
+    IntEnable(INT_TIMER2B);
+    TimerEnable(TIMER1_BASE, TIMER_B);
+    TimerIntEnable(TIMER1_BASE, TIMER_TIMB_TIMEOUT);
 }
 
 void Boot_Up (void)

@@ -476,6 +476,25 @@ void I2C0SlaveIntHandler (void)
 }
 
 
+void Fail_Safe(void)
+{
+	TimerIntClear(TIMER1_BASE,TIMER_TIMB_TIMEOUT);
+	temp32       = HWREG(Fail_Safe_TM);
+	FlashErase(Fail_Safe_TM);
+	if (temp32 < 100000000)
+	{
+		FL_TEMP[0] = temp32 + 1;
+		FlashProgram(FL_TEMP, Fail_Safe_TM, 4);
+	}
+	else
+	{
+		FL_TEMP[0] = 0;
+		FlashProgram(FL_TEMP, Fail_Safe_TM, 4);
+		mode_change = 3;
+	}
+
+}
+
 void
 SCI_Timer_INT_Handler(void)
 {

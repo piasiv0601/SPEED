@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2011-2014 Texas Instruments Incorporated.  All rights reserved.
 // Software License Agreement
-// 
+//
 // Software License Agreement
 //
 // Texas Instruments (TI) is supplying this software for use solely and
@@ -45,6 +45,7 @@ extern void I2C0SlaveIntHandler (void);
 extern void HV_OVC_ISR (void);
 extern void HK_ISR(void);
 extern void Test (void);
+extern void Fail_Safe(void);
 //extern void Fail_Safe(void);
 
 //*****************************************************************************
@@ -118,7 +119,7 @@ void (* const g_pfnVectors[])(void) =
 	SCI_Timer_INT_Handler,                      // Timer 0 subtimer A
 	HK_ISR              ,                      // Timer 0 subtimer B
 	HV_Timer_INT_Handler,                      // Timer 1 subtimer A
-	IntDefaultHandler,                      // Timer 1 subtimer B
+	Fail_Safe,                      // Timer 1 subtimer B
 	HK_ISR,                      // Timer 2 subtimer A
     IntDefaultHandler,                      // Timer 2 subtimer B
     IntDefaultHandler,                      // Analog Comparator 0
