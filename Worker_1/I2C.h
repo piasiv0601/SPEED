@@ -768,7 +768,7 @@ void I2C_Encode_Telemetry(int cmd)
 
 	if(cmd == 0) // ACL L234 ACK
 	{
-		g_ui32DataTx[0]  = 0x0B ;
+		g_ui32DataTx[0]  = 0xB ;
 		g_ui32DataTx[1]  = TCPSC;
 		g_ui32DataTx[2]  = ACK;
 		g_ui32DataTx[3]  = 0;
